@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- parameter name-based assignments -->
+    <bean id="person" class="my.spring.core.xmlconfig.constructor.Person">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="firstName" value="Fred"/>
+        <constructor-arg name="lastName" value="Derf"/>
+        <constructor-arg name="address" ref="address1"/>
+    </bean>
+    <!-- position-based assignments -->
+    <bean id="person2" class="my.spring.core.xmlconfig.constructor.Person">
+        <constructor-arg index="0" value="2"/>
+        <constructor-arg index="1" value="Steve"/>
+        <constructor-arg index="2" value="Sax"/>
+        <constructor-arg index="3" ref="address1"/>
+    </bean>
+    <!-- type and position based -->
+    <bean id="person3" class="my.spring.core.xmlconfig.constructor.Person">
+        <constructor-arg type="int" value="3"/>
+        <constructor-arg type="java.lang.String" value="Joe"/>
+        <constructor-arg type="java.lang.String" value="Morgan"/>
+        <constructor-arg type="my.spring.core.xmlconfig.constructor.Address" ref="address2"/>
+    </bean>
+
+    <bean name="address1" class="my.spring.core.xmlconfig.constructor.Address">
+        <constructor-arg name="street" value="Main Street"/>
+        <constructor-arg name="city" value="Chicago"/>
+    </bean>
+
+    <bean name="address2" class="my.spring.core.xmlconfig.constructor.Address">
+        <constructor-arg name="street" value="1st Street"/>
+        <constructor-arg name="city" value="New York"/>
+    </bean>
+</beans>

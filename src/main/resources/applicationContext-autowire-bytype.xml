@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- parameter name-based assignments, autowiring the Address by class type
+    So the Person class is dependent on the Address class. We have one address class defined here
+    so the container automatically assigns the Address class created here to the person, based on the type.
+    The name of the instance variable in Person doesn't matter.
+    There can only be one class of type Address in the container for this to work.
+    Sine both person1 and person2 use the same name for address, they are actually sharing the address object.
+    -->
+    <bean id="person1" class="my.spring.core.autowire.bytype.Person" autowire="byType">
+        <property name="name" value="Fred"/>
+    </bean>
+    <bean id="person2" class="my.spring.core.autowire.bytype.Person" autowire="byType">
+        <property name="name" value="Dave"/>
+    </bean>
+    <bean name="address" class="my.spring.core.autowire.bytype.Address">
+        <constructor-arg name="s" value="Main Street"/>
+        <constructor-arg name="c" value="Chicago"/>
+    </bean>
+
+</beans>

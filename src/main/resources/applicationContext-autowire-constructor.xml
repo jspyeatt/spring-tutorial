@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- autowiring when constructing the Person objects.
+    We have one instance of Address which is injected into the constructor of Person class. You will
+    notice in the Person class there is no setAddress() method.
+    -->
+    <bean id="person1" class="my.spring.core.autowire.constructor.Person" autowire="constructor">
+        <constructor-arg name="n" value="Fred"/>
+    </bean>
+    <bean id="person2" class="my.spring.core.autowire.constructor.Person" autowire="constructor">
+        <constructor-arg name="n" value="Fred"/>
+    </bean>
+    <bean name="address" class="my.spring.core.autowire.constructor.Address">
+        <constructor-arg name="s" value="Main Street"/>
+        <constructor-arg name="c" value="Chicago"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- instead of building the class with a constructor we are using the <property> tag to use the setters instead -->
+   <bean id="artist1" class="my.spring.core.xmlconfig.setter.Artist">
+        <property name="firstName" value="John"/>
+        <property name="lastName" value="Doe"/>
+   </bean>
+    <bean id="artist2" class="my.spring.core.xmlconfig.setter.Artist">
+        <property name="firstName" value="George"/>
+        <property name="lastName" value="Gershwin"/>
+    </bean>
+
+</beans>

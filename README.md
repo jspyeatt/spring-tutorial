@@ -41,6 +41,48 @@ the constructor argument type in the container, a fatal error is raised.
 * Multiple bean definitions within a container may match the type specified by the setting method or
 constructor arguments.
 
+# Java-based configuration
 
+You need to create configuration classes with the `@Configuration` annotation. For each configuration class
+you need to pass them in when creating the AnnotationConfigApplicationContext object for your application.
 
+Additionally, if you want Spring to be able to inject the values in `@Autowired` instance variables you need
+to build the variables as `@Bean`s in the configuration class. If you don't do that, Spring won't find the
+appropriate instances. Also note that these beans are created as singletons within the application context.
+
+You can `@Autowired` directly at an instance variable. Or you can Autowired a setter. The preference is to
+do it directly at the instance variable level to make thread safety easy. But if you can use the setter
+especially if you set the `@Autowired(required=false)`. Then you can initiate the class which has the 
+Autowired dependency later. With a setter like this.
+
+```java
+public class UserService {
+    private UserRepository userRepository;
+    
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}
+```
+
+## Collections
+
+If you have a class that has a collection or array of items in it, `@Autowire` will grab every instance
+of the appropriate class and put it in the collection. This seems a bit overzealous. Look at the
+ProductViewer class in my.spring.core.javaconfig.base.autowire.collection.
+
+## Bean scope
+
+. singleton - default - scopes a single bean definition to a single object instance for each Spring IoC container
+. prototype - scopes a bean definition to any number of object instances
+. request - scopes a single bean definition to the lifecycle of a single http request. That is, each http request
+has its own instance of a bean created of the back of a single bean definition. Only valid in the context
+of a web-aware Spring ApplicationContext
+. session - scopes a single bean definition to the lifecycle of an http Session. Only valid in the context of
+a web-aware Spring ApplicationContext
+. application - scopes a single bean definition to the lifecycle of a ServletContext. Only valid in the context
+of a web-aware Spring ApplicationContext
+. websocket - Scopes a single bean definition to the lifecycle of a WebSocket. Only valid in the context of a 
+web-aware Spring applicationContext.
 

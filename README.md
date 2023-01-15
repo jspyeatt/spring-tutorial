@@ -86,3 +86,40 @@ of a web-aware Spring ApplicationContext
 . websocket - Scopes a single bean definition to the lifecycle of a WebSocket. Only valid in the context of a 
 web-aware Spring applicationContext.
 
+# Spring Bean Lifecycle
+
+At times, beans need to perform certain initialization before they are ready for use. For example:
+open a file, allocate memory, initializing database or network connection.
+
+Beans also need to make certain corresponding destruction tasks are invoked before the beans
+are removed from the container.
+
+`initMethod` and `destroyMethod` lifecycle callback methods help us achieve this.
+
+## @PostConstructor and @PreDestroy
+
+Can be used instead of initMethod and destroyMethod. Seems to be a bit better option because the bean
+knows what it needs.
+
+## BeanPostProcessor
+
+Allows bea processing before and after the initialization callback.
+
+It processes all beans in the Spring IoC container
+
+Used to validate bean properties, alter bean properties on certain conditions or apply certain tasks
+to beans in the container.
+
+Has two methods: `postProcessBeforeInitalization()` and `post ProcessAfterInitialization()`.
+
+If you use a BeanPostProcessor the order of things will be as follows:
+
+. postProcessBeforeInitialization is called
+. the bean's constructor is call
+. the bean's PostConstructor method is called, if one is defined.
+. postProcessAfterInitialization is called.
+
+## Misc
+
+Needed the `implementation ("javax.annotation:javax.annotation-api:1.3.2")` for FileMaker PostConstruct and PreDestroy 
+annotations.

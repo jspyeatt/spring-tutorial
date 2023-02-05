@@ -119,6 +119,28 @@ If you use a BeanPostProcessor the order of things will be as follows:
 . the bean's PostConstructor method is called, if one is defined.
 . postProcessAfterInitialization is called.
 
+## Spring *Aware Interfaces
+
+Beans can get additional information about Spring IoC container through the Aware interfaces
+
+Beans can implment predefined types of Aware interfacts
+
+Spring injects corresponding resource via the setting methods implemented by the associated Aware interfaces
+
+BeanNameAware - bean name of instances configured in spring ioc container
+
+BeanFactoryAware - current bean factory information
+
+ApplicationContextAware - current application context information
+
+MessageSourceAware - MessageSource information to solve text messages
+
+ApplicationEventPublisherAware - application event publisher, through which application events can be published
+
+ResourceLoaderAware - Resource loader to load external resources
+
+EnvironmentAware - Environment information associated with ApplicationContext
+
 ## Misc
 
 Needed the `implementation ("javax.annotation:javax.annotation-api:1.3.2")` for FileMaker PostConstruct and PreDestroy 

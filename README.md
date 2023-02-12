@@ -210,6 +210,20 @@ at compile time, load time or runtime. Spring performs AOP at runtime.
 the same annotations as AspectJ 5. The AOP runtime is pure Spring AOP with no dependency on AspectJ compiler or weaver.
 To enable aspectj (xml-based <aop:aspectj-autoproxy/>), annotation based (@EnableAspectJAutoProxy).
 
+## Spring Executors
+
+### SimpleAsyncTaskExecutor
+
+Spawns as many threads as needed like Executors.cachedThreadExecutor();
+
+### SyncTaskExecutor
+
+Executes in the main thread.
+
+### TaskExecutorAdapter
+
+Provides an adapter and internally you get to pick the Executors implementation you want.
+
 ## Misc
 
 Needed the `implementation ("javax.annotation:javax.annotation-api:1.3.2")` for FileMaker PostConstruct and PreDestroy 

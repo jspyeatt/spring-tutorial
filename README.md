@@ -141,6 +141,75 @@ ResourceLoaderAware - Resource loader to load external resources
 
 EnvironmentAware - Environment information associated with ApplicationContext
 
+## AOP
+
+AOP models an aspect of an application: logging, transaction. Aspects are known as concerns which are cut
+across multiple types and objects. Known as cross cutting concerns.
+
+Need to add `org.springframework:spring-aspects:${spring.version}`
+
+### Aspect
+
+A modularization of a concern that cuts across multiple classes. Ex. Transaction management 
+This generally cuts across an entire application and is a concert that can be managed through an aspect.
+In Spring AOP aspects are managed through regular classes with `@Aspect`. Can also be managed through
+regular classes and XML.
+
+### Join Point
+
+A point during execution of a program, such as the execution of a method or handling an exception. In Spring AOP,
+join points are always method execution.
+
+### Advice
+
+Advice is a specific action taken at a specific join point. Advices are plain java methods with one of the `@Advice`
+annotations. Spring provide different types advice: before, after, after returning, after throwning and around.
+Spring models and advice as an interceptor and maintains a chain of interceptors around the join point.
+
+There are 5 device types:
+
+* Before - takes a pointcut expression as an attribute. Executes before the join point. Can't prevent execution flow proceeding to the join point.
+* After - executed after a join point exits. Executes regardless of whether the join point exits normally or not.
+* After Returning - executed after a join point completes normally
+* After Throwing - execute if a method terminates abnormally
+* Around - Most general. Most powerful advice. Surrounds a join point such as method invocation. Can perform custom behavior before and after the method invocation. Responsible for choosing whether to proceed to join point or short cut advised method execution.
+
+### Pointcut
+
+A pointcut is a predicate that matches a join point. It determines the join point of interest. Pointcut is
+represented in terms of an expression known as a point cut expression. Advices are associated with
+pointcut expressions and runs in any join point matched by the pointcut. The concept of join points as matched
+by pointcut expressions is central to AOP.
+
+### Introduction
+
+An introduction is declaring additional methods and fields on behalf of the type.
+
+### Target Object
+
+Target object is one which being advised by one or more aspects. This is known as an advised object. Spring AOP
+is implemented through runtime proxies, hence this target object is always a proxy object.
+
+### AOP Proxy
+
+Proxy is an object created by AOP framework to implement the aspect contracts (advise method execution and so on.).
+AOP proxy is a jvm dynamic proxy or cglib proxy. Proxy objects are created when we want to add or modify already 
+created classes. Proxys have the same set of methods as the original class and Java Proxy extends the original class.
+Proxy has a handle to the original object and can call methods on that.
+
+Spring AOP uses standard J2SE dynamic proxy. It can proxy any interface. 
+
+### Weaving
+
+Weaving is the process of linking aspects with application types or object to create an advised object. Weaving can be done
+at compile time, load time or runtime. Spring performs AOP at runtime.
+
+### AspectJ
+
+@AspectJ is a style of declaring aspects as regular java classes annotated with java5 annotations. Spring 2.0 interprets
+the same annotations as AspectJ 5. The AOP runtime is pure Spring AOP with no dependency on AspectJ compiler or weaver.
+To enable aspectj (xml-based <aop:aspectj-autoproxy/>), annotation based (@EnableAspectJAutoProxy).
+
 ## Misc
 
 Needed the `implementation ("javax.annotation:javax.annotation-api:1.3.2")` for FileMaker PostConstruct and PreDestroy 

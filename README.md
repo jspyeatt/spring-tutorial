@@ -1,5 +1,9 @@
 # Spring Tutorial Notes
 
+https://youtu.be/DrMmHTHTcCo
+
+https://github.com/code-fountain/spring-core-tasks
+
 ## Dependency Resolution Process
 
 * The ApplicationContext is created and initialized with configuration metadata
@@ -223,6 +227,20 @@ Executes in the main thread.
 ### TaskExecutorAdapter
 
 Provides an adapter and internally you get to pick the Executors implementation you want.
+
+## Events
+
+Communication between pojos - application event management
+
+Spring application context supports event based communication between beans.
+
+Publisher publishes an event and a listener receives the event. Both are unaware of each other.
+
+One listener can listen to many different event types. This promotes loose coupling between components.
+
+### ApplicationContext Events
+
+
 
 ## Misc
 
